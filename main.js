@@ -19,8 +19,6 @@ let tray = null;
 let windowState = 0;
 
 
-
-
 let mainWindow;
 
 function createWindow () {
