@@ -21,28 +21,36 @@ let windowState = 0;
 
 let mainWindow;
 
+function openNewWindow(){
+    if(windowState === 0){
+        createWindow();
+        windowState = 1;
+    }
+}
+
+
 function createWindow () {
-// Create the browser window.
+    // Create the browser window.
 
     mainWindow = new BrowserWindow({width: 400, height: 600});
 
   // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'index.html'),
+        protocol: 'file:',
+        slashes: true
+    }));
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+    // Open the DevTools.
+    // mainWindow.webContents.openDevTools()
 
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null
-  })
+    // Emitted when the window is closed.
+    mainWindow.on('closed', function () {
+        // Dereference the window object, usually you would store windows
+        // in an array if your app supports multi windows, this is the time
+        // when you should delete the corresponding element.
+        mainWindow = null;
+    });
 }
 
 // This method will be called when Electron has finished
@@ -56,10 +64,13 @@ app.on('ready', function(){
         {label: 'Item3', type: 'radio', checked: true},
         {label: 'Item4', type: 'radio'},
         {type: 'separator'},
-        {icon: 'graphics/my_graphic.png', label: 'Button', click(){createWindow();}}
+        {icon: 'graphics/my_graphic.png', label: 'Button', click(){openNewWindow();}}
     ]);
     tray.setToolTip('This is my application');
     tray.setContextMenu(contextMenu);
+    tray.on('click', function(e){
+        openNewWindow();
+    });
     //createWindow();
 });
 

@@ -3,3 +3,9 @@
     Removed due to implementing BS4
     **/
 }
+
+tr td{
+    height: 20px;
+    padding: 0;
+    border-top: 0;
+}

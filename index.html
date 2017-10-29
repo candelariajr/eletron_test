@@ -1,28 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Title</title>
-      <script src="JS/jquery-3.2.1.min.js"></script>
-      <script src="JS/Popper.js"></script>
-      <script src="JS/bootstrap.min.js"></script>
-      <script src="JS/js.js"></script>
-      <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css">
-      <link rel="stylesheet" type="text/css" href="CSS/css.css">
-  </head>
-  <body>
-
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="JS/jquery-3.2.1.min.js"></script>
+    <script src="JS/Popper.js"></script>
+    <script src="JS/bootstrap.min.js"></script>
+    <script src="JS/select2.full.js"></script>
+    <script src="JS/js.js"></script>
+    <!-- keep this line below the JS imports!-->
     <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
+        if (window.module) module = window.module;
+        const os = require('os');
     </script>
-    <h3>Added Text</h3>
-  </body>
+    <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="CSS/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="CSS/css.css">
+</head>
+<body id="mainBody">
+    <div class="container-fluid" id="mainForm">
+        <h2>Form Testing</h2>
+        <form>
+            <div class="form-group">
+                <label for="textInput1">Text1</label>
+                <input type="text" class="form-control" id="textInput1" name="textInput1">
+            </div>
+            <div class="form-group">
+                <label for="id_label_multiple">
+                    Click this to highlight the multiple select element
+                </label>
+                <select class="form-control js-example-basic-multiple js-states form-control" id="id_label_multiple" multiple="multiple" style="width: 100%">
+                    <option>Stuff</option>
+                    <option>Other Stuff</option>
+                    <option>Things</option>
+                    <option>Dude</option>
+                    <option>Dude and Stuff</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="singleSelect">Other Single Option</label>
+                <select id="singleSelect" class="form-control">
+                    <option>You</option>
+                    <option>can</option>
+                    <option>only</option>
+                    <option>get</option>
+                    <option>one</option>
+                </select>
+            </div>
+            <table class="table">
+                <thead class="thead-default">
+                <tr>
+                    <th colspan="4">
+                        Related Info
+                    </th>
+                </tr>
+                <tr>
+                    <th>param</th>
+                    <th>value</th>
+                    <th>param</th>
+                    <th>value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Node.JS</td>
+                    <td><script>document.write(process.versions.node)</script></td>
+                    <td>Chromium</td>
+                    <td><script>document.write(process.versions.chrome)</script></td>
+                </tr>
+                <tr>
+                    <td>Electron</td>
+                    <td><script>document.write(process.versions.electron)</script></td>
+                    <td>Computer Name</td>
+                    <td><script>document.write(os.hostname())</script></td>
+                </tr>
+                <tr>
+                    <td>OS</td>
+                    <td><script>document.write(os.type())</script></td>
+                    <td>CPU</td>
+                    <td><script>document.write(os.arch())</script></td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <script>
+        $('.js-example-basic-multiple').select2({
+            placeholder: 'Select an option'
+        });
+    </script>
+</body>
 </html>
