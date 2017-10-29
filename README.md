@@ -1,3 +1,11 @@
+This has been modified for preliminary testing of the help app
+
+
+
+
+
+
+
 # electron-quick-start
 
 **Clone and run for a quick way to see Electron in action.**
