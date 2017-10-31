@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
+    <!--
+        Electron doesn't use a true window, so it doesn't have a window object. JQuery likes a window object to
+        exist when started. This line is here to force a fake window object to exist just to keep JQuery happy
+    -->
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="JS/jquery-3.2.1.min.js"></script>
     <script src="JS/Popper.js"></script>
     <script src="JS/bootstrap.min.js"></script>
     <script src="JS/select2.full.js"></script>
     <script src="JS/js.js"></script>
-    <!-- keep this line below the JS imports!-->
+    <!--
+        This line has to be AFTER the JS imports and BEFORE the DOM loading!
+        For some reason the window module will sometimes vanish in Mac OS X. (??) This just puts it back
+        Also- Require OS reaches down to the base Node.JS Execution and calls it to load the OS module, which
+        is a read-only plethora of JSON and functions that allow you to access System variables.
+    -->
     <script>
         if (window.module) module = window.module;
         const os = require('os');
@@ -18,6 +27,16 @@
     <link rel="stylesheet" type="text/css" href="CSS/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="CSS/select2.min.css">
     <link rel="stylesheet" type="text/css" href="CSS/css.css">
+    <!--
+        We don't have to use JQuery, BS, or any framework. I just went with it because with that combination,
+        it's really easy to get a lot of cool features implemented quickly. It does at a second or two to startup
+        time. Also- it'll respond to the screen rendering in different sizes due to different pixel pitches.
+
+        It's also pretty, and I'm pretty awful at CSS.
+        I'm also thinking this could be redone in Laravel and Vue-
+        It'll need online capability anyway- because if you can't reach the server, then there are probably
+        networking issues and a desktop app can't go anywhere without a network in the first place.
+    -->
 </head>
 <body id="mainBody">
     <div class="container-fluid" id="mainForm">
@@ -87,6 +106,8 @@
         </form>
     </div>
     <script>
+        // in order for that neato select tag library to work- the affected DOM elements have to be rendered.
+        // This can be called earlier, but there's just so much JQuery.
         $('.js-example-basic-multiple').select2({
             placeholder: 'Select an option'
         });
