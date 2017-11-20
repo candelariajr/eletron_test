@@ -13,7 +13,7 @@
     <script src="JS/Popper.js"></script>
     <script src="JS/bootstrap.min.js"></script>
     <script src="JS/select2.full.js"></script>
-    <script src="JS/js.js"></script>
+
     <!--
         This line has to be AFTER the JS imports and BEFORE the DOM loading!
         For some reason the window module will sometimes vanish in Mac OS X. (??) This just puts it back
@@ -68,7 +68,7 @@
                     <option>one</option>
                 </select>
             </div>
-            <table class="table">
+            <table class="table" style="display:none">
                 <thead class="thead-default">
                 <tr>
                     <th colspan="4">
@@ -101,16 +101,42 @@
                     <td>CPU</td>
                     <td><script>document.write(os.arch())</script></td>
                 </tr>
+                <tr>
+                    <td>Username</td>
+                    <td><script>document.write(os.userInfo().username)</script></td>
+                    <td></td>
+                    <td></td>
+                </tr>
                 </tbody>
             </table>
         </form>
+        <footer class="footer">
+            <button id="submitButton">
+                Submit
+            </button>
+        </footer>
     </div>
+    <div class="container-fluid" id="testParameterForm"> <!--NOTE: This is for testing JSON callback only-->
+        <div class="row">
+            <div class="col-md-12">
+                Whoa, shit, we got tiny people!
+            </div>
+        </div>
+        <div class= "row">
+            <div class="col-md-12" id="testPanel">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button id="backToFormButton">Back</button>
+            </div>
+        </div>
+        <footer class="footer">BOTTOM</footer>
+    </div>
+    <script src="JS/js.js"></script>
     <script>
-        // in order for that neato select tag library to work- the affected DOM elements have to be rendered.
-        // This can be called earlier, but there's just so much JQuery.
-        $('.js-example-basic-multiple').select2({
-            placeholder: 'Select an option'
-        });
+
     </script>
 </body>
 </html>
